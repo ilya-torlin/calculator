@@ -1,0 +1,26 @@
+version: '3'
+services:
+  api-nginx:
+    build:
+      context: ./build_env/docker
+      dockerfile: nginx.docker
+    volumes:
+      - ./api:/var/www/api
+    ports:
+      - "8081:80"
+  api-php-fpm:
+    build:
+      context: ./build_env/docker
+      dockerfile: php-fpm.docker
+    volumes:
+      - ./api:/var/www/api
+      - ./storage:/var/www/storage
+  api-php-cli:
+    build:
+      context: ./build_env/docker
+      dockerfile: php-cli.docker
+    volumes:
+      - ./api:/var/www/api
+      - ./storage:/var/www/storage
+    working_dir: /var/www/api
+    tty: true
