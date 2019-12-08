@@ -32,7 +32,7 @@ class LongDigit
         $this->removeZeros();
     }
 
-    private function removeZeros()
+    public function removeZeros()
     {
         // zero
         if (count($this->digits) == 1 && $this->digits[0] === 0) {

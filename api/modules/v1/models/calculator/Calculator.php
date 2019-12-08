@@ -33,7 +33,7 @@ class Calculator
 
     public function mult(): LongDigit
     {
-        return (new MultAction())->execute(...$this->terms);
+        return (new MultAction())->execute($this->terms[0], $this->terms[1]);
     }
 
     public function div(): LongDigit
