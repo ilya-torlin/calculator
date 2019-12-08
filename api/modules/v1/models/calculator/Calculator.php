@@ -23,12 +23,12 @@ class Calculator
 
     public function add(): LongDigit
     {
-        return (new SumAction())->execute(...$this->terms);
+        return (new SumAction())->execute($this->terms[0], $this->terms[1]);
     }
 
     public function sub(): LongDigit
     {
-        return (new SubAction())->execute(...$this->terms);
+        return (new SubAction())->execute($this->terms[0], $this->terms[1]);
     }
 
     public function mult(): LongDigit
@@ -38,6 +38,6 @@ class Calculator
 
     public function div(): LongDigit
     {
-        return (new DivAction())->execute(...$this->terms);
+        return (new DivAction())->execute($this->terms[0], $this->terms[1]);
     }
 }
