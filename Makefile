@@ -9,6 +9,9 @@ docker-clear:
 docker-up:
 	docker-compose up --build -d
 
+docker-clear:
+	docker-compose down --remove-orphans
+
 api-env:
 	docker-compose exec api-php-cli rm -f .env
 	docker-compose exec api-php-cli ln -sr .env.example .env
