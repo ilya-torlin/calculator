@@ -55,4 +55,11 @@ class DigitFormatterTest extends Unit
         $formatter = new DigitFormatter($longDigit);
         $this->assertEquals('-0.00000000000000000812', $formatter->result());
     }
+
+    public function testExtremely2NegativeFloatFormatter()
+    {
+        $longDigit = new StringLongDigit('123154654.1234543245643245643456434565434567543234567876');
+        $formatter = new DigitFormatter($longDigit);
+        $this->assertEquals('123154654.1234543245643245643456434565434567543234567876', $formatter->result());
+    }
 }
