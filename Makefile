@@ -16,3 +16,6 @@ api-env:
 api-composer:
 	docker-compose exec api-php-cli composer install
 	docker-compose exec api-php-cli composer update
+
+api-tests:
+	docker-compose exec api-php-cli php vendor/bin/codecept run unit

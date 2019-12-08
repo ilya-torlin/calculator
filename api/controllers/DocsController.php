@@ -19,19 +19,6 @@ define('DEV_URL', 'https://localhost/v1');
  *   url=DEV_URL,
  *   description="Dev server"
  * )
- *
- * @SWG\Swagger(
- *     schemes={"https"},
- *     host=BASE_PATH,
- *     basePath="/v1",
- *     produces={"application/json"},
- *     consumes={"application/json"},
- *     @SWG\Info(
- *         version="1.0",
- *         title="Calculator",
- *         description="Описание работы с API калькулятора",
- *     ),
- * )
  */
 
 /**
