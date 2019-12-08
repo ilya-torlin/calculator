@@ -52,9 +52,9 @@ class StringLongDigitTest extends Unit
 
     public function testCreateExtremelyNegativeFloatStringLongDigit()
     {
-        $longDigit = new StringLongDigit('-0.081200');
+        $longDigit = new StringLongDigit('-0.0000000000000000081200');
         $this->assertEquals(-1, $longDigit->sign);
-        $this->assertEquals(-1, $longDigit->exponent);
+        $this->assertEquals(-17, $longDigit->exponent);
         $this->assertEquals([8, 1 ,2], $longDigit->digits);
     }
 }
