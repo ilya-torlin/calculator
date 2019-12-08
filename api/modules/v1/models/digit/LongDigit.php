@@ -24,7 +24,7 @@ class LongDigit
      */
     public $exponent;
 
-    public function __construct(int $sign = 1, int $exponent = 1, $digits = null)
+    public function __construct(int $sign = 1, int $exponent = 1, array $digits = null)
     {
         $this->sign = $sign;
         $this->exponent = $exponent;

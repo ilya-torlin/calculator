@@ -3,11 +3,16 @@
 namespace app\modules\v1\models\action;
 
 use app\modules\v1\models\digit\LongDigit;
+use app\modules\v1\models\digit\StringLongDigit;
+use phpDocumentor\Reflection\Types\This;
 
 class MultAction implements Action
 {
     public function execute(LongDigit $first, LongDigit $second): LongDigit
     {
+        if ($this->zeroCheck($first) || $this->zeroCheck($second)) {
+            return new LongDigit(1, 1, [0]);
+        }
         $length = count($first->digits) + count($second->digits);
         $result = new LongDigit();
 
@@ -26,5 +31,13 @@ class MultAction implements Action
         $result->removeZeros();
 
         return $result;
+    }
+
+    private function zeroCheck(LongDigit $digit)
+    {
+        if (count($digit->digits) == 1 && $digit->digits[0] === 0) {
+            return true;
+        }
+        return false;
     }
 }
