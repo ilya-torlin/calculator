@@ -15,3 +15,4 @@ api-env:
 
 api-composer:
 	docker-compose exec api-php-cli composer install
+	docker-compose exec api-php-cli composer update
