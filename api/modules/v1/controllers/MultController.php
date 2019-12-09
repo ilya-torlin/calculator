@@ -22,18 +22,17 @@ class MultController extends BaseApiController
         ]);
     }
 
+    public function actions()
+    {
+        $actions = parent::actions();
+        unset($actions['index']);
+        return $actions;
+    }
     public function actionIndex()
     {
         list($params, $rawParams) = $this->parseParamsFromQuery();
         $calculator =  new Calculator($params);
         $formatter = new DigitFormatter($calculator->mult());
         return $this->prepareParams($rawParams, $formatter->result());
-    }
-
-    public function actions()
-    {
-        $actions = parent::actions();
-        unset($actions['index']);
-        return $actions;
     }
 }

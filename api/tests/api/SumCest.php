@@ -59,4 +59,28 @@ class SumCest
         $I->seeResponseCodeIs(HttpCode::OK);
         $I->seeResponseContainsJson(['result' => '0.22345678987654321']);
     }
+
+    public function urlFirstNegativeDotParamsSum(ApiTester $I)
+    {
+        $params = http_build_query(['first' => '-.1', 'second' => '.12345678987654321']);
+        $I->sendGET('/sum?' . $params);
+        $I->seeResponseCodeIs(HttpCode::OK);
+        $I->seeResponseContainsJson(['result' => '0.02345678987654321']);
+    }
+
+    public function urlSecondNegativeDotParamsSum(ApiTester $I)
+    {
+        $params = http_build_query(['first' => '1.1', 'second' => '-0.1234567']);
+        $I->sendGET('/sum?' . $params);
+        $I->seeResponseCodeIs(HttpCode::OK);
+        $I->seeResponseContainsJson(['result' => '0.9765433']);
+    }
+
+    public function urlNegativeDotParamsSum(ApiTester $I)
+    {
+        $params = http_build_query(['first' => '-1.1', 'second' => '-0.1234567']);
+        $I->sendGET('/sum?' . $params);
+        $I->seeResponseCodeIs(HttpCode::OK);
+        $I->seeResponseContainsJson(['result' => '-1.2234567']);
+    }
 }

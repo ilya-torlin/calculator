@@ -41,7 +41,7 @@ $config = [
                         'v1/sum',
                         'v1/mult',
                         'v1/sub',
-                        'v1/div',
+                        //'v1/div',
                     ],
                 ],
             ],
