@@ -7,19 +7,6 @@ use Codeception\Test\Unit;
 
 class SubActionTest extends Unit
 {
-    /**
-     * @var \UnitTester
-     */
-    protected $tester;
-
-    protected function _before()
-    {
-    }
-
-    protected function _after()
-    {
-    }
-
     public function testSubBasicStringLongDigits()
     {
         $longDigit1 = new StringLongDigit('1');

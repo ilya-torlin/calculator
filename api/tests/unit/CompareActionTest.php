@@ -6,19 +6,6 @@ use Codeception\Test\Unit;
 
 class CompareActionTest extends Unit
 {
-    /**
-     * @var \UnitTester
-     */
-    protected $tester;
-
-    protected function _before()
-    {
-    }
-
-    protected function _after()
-    {
-    }
-
     public function testMoreBasicStringLongDigits()
     {
         $longDigit1 = new StringLongDigit('1');

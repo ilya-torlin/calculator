@@ -5,19 +5,6 @@ use Codeception\Test\Unit;
 
 class StringLongDigitTest extends Unit
 {
-    /**
-     * @var \UnitTester
-     */
-    protected $tester;
-
-    protected function _before()
-    {
-    }
-
-    protected function _after()
-    {
-    }
-
     public function testCreateZeroStringLongDigit()
     {
         $longDigit = new StringLongDigit('0');

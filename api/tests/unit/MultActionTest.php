@@ -7,19 +7,6 @@ use Codeception\Test\Unit;
 
 class MultActionTest extends Unit
 {
-    /**
-     * @var \UnitTester
-     */
-    protected $tester;
-
-    protected function _before()
-    {
-    }
-
-    protected function _after()
-    {
-    }
-
     public function testLightStringLongDigitMultiplication()
     {
         $longDigit1 = new StringLongDigit('3');

@@ -7,19 +7,6 @@ use Codeception\Test\Unit;
 
 class InverseActionTest extends Unit
 {
-    /**
-     * @var \UnitTester
-     */
-    protected $tester;
-
-    protected function _before()
-    {
-    }
-
-    protected function _after()
-    {
-    }
-
     public function testLightLongDigit()
     {
         $longDigit1 = new LongDigit(1, 2, [1, 2]);

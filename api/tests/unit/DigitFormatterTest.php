@@ -8,19 +8,6 @@ use Codeception\Test\Unit;
 
 class DigitFormatterTest extends Unit
 {
-    /**
-     * @var \UnitTester
-     */
-    protected $tester;
-
-    protected function _before()
-    {
-    }
-
-    protected function _after()
-    {
-    }
-
     public function testZeroFormatter()
     {
         $longDigit = new StringLongDigit('0');
