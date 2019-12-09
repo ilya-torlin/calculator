@@ -10,7 +10,7 @@ class MultAction implements Action
 {
     public function execute(LongDigit $first, LongDigit $second): LongDigit
     {
-        if ($this->zeroCheck($first) || $this->zeroCheck($second)) {
+        if ($first->zeroCheck() || $second->zeroCheck()) {
             return new LongDigit(1, 1, [0]);
         }
         $length = count($first->digits) + count($second->digits);
@@ -28,16 +28,10 @@ class MultAction implements Action
             $result->digits[$count - 1] += intdiv($result->digits[$count], 10);
             $result->digits[$count] %= 10;
         }
-        $result->removeZeros();
+        $result->removeZeroes();
 
         return $result;
     }
 
-    private function zeroCheck(LongDigit $digit)
-    {
-        if (count($digit->digits) == 1 && $digit->digits[0] === 0) {
-            return true;
-        }
-        return false;
-    }
+
 }

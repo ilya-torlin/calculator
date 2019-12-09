@@ -29,10 +29,10 @@ class LongDigit
         $this->sign = $sign;
         $this->exponent = $exponent;
         $this->digits = $digits ?? array_fill(0, 1, 0);
-        $this->removeZeros();
+        $this->removeZeroes();
     }
 
-    public function removeZeros()
+    public function removeZeroes()
     {
         // zero
         if (count($this->digits) == 1 && $this->digits[0] === 0) {
@@ -58,5 +58,13 @@ class LongDigit
             $this->exponent = 1;
             $this->sign = 1;
         }
+    }
+
+    public function zeroCheck()
+    {
+        if (count($this->digits) == 1 && $this->digits[0] === 0) {
+            return true;
+        }
+        return false;
     }
 }
