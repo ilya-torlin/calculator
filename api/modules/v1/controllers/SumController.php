@@ -33,6 +33,10 @@ class SumController extends BaseApiController
     {
         list($params, $rawParams) = $this->parseParamsFromQuery();
         $calculator =  new Calculator($params);
+        if (count($params) > 2) {
+            $result = $calculator->add();
+            $calculator =  new Calculator([$result, $params[2]]);
+        }
         $formatter = new DigitFormatter($calculator->add());
         return $this->prepareParams($rawParams, $formatter->result());
     }
