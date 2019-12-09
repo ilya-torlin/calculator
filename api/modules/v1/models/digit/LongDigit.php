@@ -44,7 +44,7 @@ class LongDigit
             return null;
         }
         // delete zeros from right side
-        while ($this->digits[count($this->digits) - 1] === 0) {
+        while (count($this->digits) > 0 && ($this->digits[count($this->digits) - 1] === 0)) {
             array_pop($this->digits);
         }
         // delete zeros from left side
