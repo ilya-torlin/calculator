@@ -28,6 +28,43 @@ class MultController extends BaseApiController
         unset($actions['index']);
         return $actions;
     }
+
+    /**
+     * @OA\Get(
+     *     path="/mult",
+     *     tags={"multiplication"},
+     *     summary="Метод умножения нескольких длинных чисел",
+     *     description="Умножаем 2 слагаемых",
+     *     @OA\Parameter(
+     *         in="query",
+     *         name="first",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string",
+     *             example="1 | 0 | -.1234 | -123456789.123456789"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         in="query",
+     *         name="second",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string",
+     *             example="1 | 0 | -.1234 | -123456789.123456789"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Результат успешно посчитан",
+     *         @OA\JsonContent(ref="#/components/schemas/CalculationResult")
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Неверно задан параметр",
+     *         @OA\JsonContent(ref="#/components/schemas/UnprocessableEntity")
+     *     ),
+     * )
+     */
     public function actionIndex()
     {
         list($params, $rawParams) = $this->parseParamsFromQuery();

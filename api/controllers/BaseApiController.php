@@ -58,6 +58,19 @@ class BaseApiController extends Controller
         ]);
     }
 
+    /**
+     * @OA\Schema(
+     *      schema="CalculationResult",
+     *      @OA\Property(property="status", type="string", example="success"),
+     *      @OA\Property(property="data", type="object",
+     *         @OA\Property(property="input", type="object",
+     *              @OA\Property(property="first", type="string", example="1 | 0 | -.1234 | -123456789.123456789"),
+     *              @OA\Property(property="second", type="string", example="1 | 0 | -.1234 | -123456789.123456789"),
+     *         ),
+     *         @OA\Property(property="result", type="string", example="1 | 0 | -.1234 | -123456789.123456789"),
+     *      )
+     * )
+     */
     public function prepareParams(array $inputParams, string $result): array
     {
         return [
@@ -69,6 +82,16 @@ class BaseApiController extends Controller
         ];
     }
 
+    /**
+     * @OA\Schema(
+     *      schema="UnprocessableEntity",
+     *      @OA\Property(property="name", type="string", example="Unprocessable entity"),
+     *      @OA\Property(property="message", type="string", example="parameter has invalid characters, only [0-9.-]"),
+     *      @OA\Property(property="code", type="integer", example="0"),
+     *      @OA\Property(property="status", type="integer", example="422"),
+     *      @OA\Property(property="type", type="string", example="yii\web\UnprocessableEntityHttpException")
+     * )
+     */
     public function parseParamsFromQuery(): array
     {
         $requestParams = Yii::$app->request->getQueryParams();

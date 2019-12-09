@@ -7,28 +7,19 @@ use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
-define('DEV_URL', 'https://localhost/v1');
+define('DEV_URL', 'http://localhost:8081/v1');
 
 /**
  * @OA\Info(
  *   version="1.0.0",
  *   title="Calculator",
- *   description="Описание работы с API калькулятора"
+ *   description="Описание работы с API калькулятора длинных чисел"
  * ),
  * @OA\Server(
  *   url=DEV_URL,
  *   description="Dev server"
  * )
  */
-
-/**
- * @OA\Get(
- *     path="/",
- *     description="Home page",
- *     @OA\Response(response="default", description="Welcome page")
- * )
- */
-
 class DocsController extends Controller
 {
     /**

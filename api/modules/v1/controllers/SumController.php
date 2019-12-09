@@ -29,6 +29,51 @@ class SumController extends BaseApiController
         return $actions;
     }
 
+    /**
+     * @OA\Get(
+     *     path="/sum",
+     *     tags={"addition"},
+     *     summary="Метод сложение нескольких длинных чисел",
+     *     description="Складываем 2 и 3 слагаемых",
+     *     @OA\Parameter(
+     *         in="query",
+     *         name="first",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string",
+     *             example="1 | 0 | -.1234 | -123456789.123456789"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         in="query",
+     *         name="second",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string",
+     *             example="1 | 0 | -.1234 | -123456789.123456789"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         in="query",
+     *         name="third",
+     *         required=false,
+     *         @OA\Schema(
+     *             type="string",
+     *             example="1 | 0 | -.1234 | -123456789.123456789"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Результат успешно посчитан",
+     *         @OA\JsonContent(ref="#/components/schemas/CalculationResult")
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Неверно задан параметр",
+     *         @OA\JsonContent(ref="#/components/schemas/UnprocessableEntity")
+     *     ),
+     * )
+     */
     public function actionIndex()
     {
         list($params, $rawParams) = $this->parseParamsFromQuery();
