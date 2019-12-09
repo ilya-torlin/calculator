@@ -110,7 +110,7 @@ class LongDigit
 
     public function less(LongDigit $second): bool
     {
-        return !($this->more($second) || $this === $second)
+        return !($this->more($second) || $this === $second);
     }
 
     public function equal(LongDigit $second): bool
