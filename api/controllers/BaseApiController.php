@@ -19,7 +19,7 @@ class BaseApiController extends Controller
     protected $collectionOptions = ['GET', 'POST', 'OPTIONS'];
     protected $resourceOptions = ['GET', 'POST', 'OPTIONS'];
 
-    const DIGIT_PATTERN = '/^[0-9]*[.]?[0-9]+$/';
+    const DIGIT_PATTERN = '/^-?[0-9]{1,}[.]?[0-9]+$/';
 
     public function behaviors()
     {
@@ -76,7 +76,7 @@ class BaseApiController extends Controller
         foreach ($requestParams as $key => $param) {
             preg_match(self::DIGIT_PATTERN, $param, $matches);
             if (empty($matches)) {
-                throw new UnprocessableEntityHttpException("${key} - parameter has invalid characters, only [0-9.]");
+                throw new UnprocessableEntityHttpException("${key} - parameter has invalid characters, only [0-9.-]");
             }
             array_push($params, new StringLongDigit($param));
         }
