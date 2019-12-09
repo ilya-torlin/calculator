@@ -22,18 +22,18 @@ class SumController extends BaseApiController
         ]);
     }
 
-    public function actionIndex()
-    {
-        $params = $this->parseParamsFromQuery();
-        $calculator =  new Calculator($params);
-        $formatter = new DigitFormatter($calculator->add());
-        return $this->prepareParams($params, $formatter->result());
-    }
-
     public function actions()
     {
         $actions = parent::actions();
         unset($actions['index']);
         return $actions;
+    }
+
+    public function actionIndex()
+    {
+        list($params, $rawParams) = $this->parseParamsFromQuery();
+        $calculator =  new Calculator($params);
+        $formatter = new DigitFormatter($calculator->add());
+        return $this->prepareParams($rawParams, $formatter->result());
     }
 }
