@@ -2,6 +2,9 @@
 
 namespace app\modules\v1\models\digit;
 
+use app\modules\v1\models\action\SubAction;
+use yii\web\UnprocessableEntityHttpException;
+
 class LongDigit
 {
     /*
@@ -103,5 +106,69 @@ class LongDigit
             }
         }
         return false;
+    }
+
+    public function less(LongDigit $second): bool
+    {
+        return !($this->more($second) || $this === $second)
+    }
+
+    public function equal(LongDigit $second): bool
+    {
+        if ($this->sign !== $second->sign) {
+            return false;
+        }
+        if ($this->exponent !== $second->exponent) {
+            return false;
+        }
+        if (count($this->digits) !== count($second->digits)) {
+            return false;
+        }
+        for ($count = 0; $count < count($this->digits); $count++) {
+            if ($this->digits[$count] !== $second->digits[$count]) {
+                return false;
+            }
+        }
+	    return true;
+    }
+
+    public function inverseLongDigit(): LongDigit
+    {
+        if ($this->zeroCheck()) {
+            throw new UnprocessableEntityHttpException('LongDigit::inverseLongDigit() - division by zero');
+        }
+        $clone = new LongDigit($this->sign, $this->exponent, $this->digits);
+        $clone->sign = 1;
+        $unit = new LongDigit(1, 1, [1]);
+
+        $result = new LongDigit();
+        $result->sign = $this->sign;
+        $result->exponent = 1;
+        $result->digits = [];
+
+        while ($clone->less($unit)) {
+            $clone->exponent++;
+            $result->exponent++;
+        }
+        while ($unit->less($clone)) {
+            $unit->exponent++;
+        }
+        $result->exponent -= $unit->exponent - 1;
+        $count = 0;
+        $totalCount = max(0, $result->exponent);
+        $maxCount = self::DIV_DIGIT + $totalCount;
+
+        do {
+            $digit = 0;
+            while ($unit->more($clone) || $unit->equal($clone)) {
+                $digit++;
+                $unit = (new SubAction())->execute($unit, $clone);
+            }
+            $unit->exponent++;
+            $unit->removeZeroes();
+            array_push($result->digits, $digit);
+            $count++;
+        } while (!$unit->zeroCheck() && $count < $maxCount);
+        return $result;
     }
 }
