@@ -19,7 +19,7 @@ class BaseApiController extends Controller
     protected $collectionOptions = ['GET', 'POST', 'OPTIONS'];
     protected $resourceOptions = ['GET', 'POST', 'OPTIONS'];
 
-    const DIGIT_PATTERN = '/^-?[0-9]{1,}[.]?[0-9]+$/';
+    const DIGIT_PATTERN = '/^-?[0-9]*[.]?[0-9]+$/';
 
     public function behaviors()
     {
@@ -80,7 +80,7 @@ class BaseApiController extends Controller
             }
             array_push($params, new StringLongDigit($param));
         }
-        if (empty($param)) {
+        if (!isset($param)) {
             throw new UnprocessableEntityHttpException('Empty params');
         }
         return [$params, $requestParams];
