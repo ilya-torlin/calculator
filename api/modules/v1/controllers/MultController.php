@@ -68,7 +68,7 @@ class MultController extends BaseApiController
     public function actionIndex()
     {
         list($params, $rawParams) = $this->parseParamsFromQuery();
-        $calculator =  new Calculator($params);
+        $calculator = new Calculator($params);
         $formatter = new DigitFormatter($calculator->mult());
         return $this->prepareParams($rawParams, $formatter->result());
     }

@@ -7,7 +7,6 @@ use app\modules\v1\models\action\MultAction;
 use app\modules\v1\models\action\SubAction;
 use app\modules\v1\models\action\SumAction;
 use app\modules\v1\models\digit\LongDigit;
-use yii\web\BadRequestHttpException;
 
 class Calculator
 {

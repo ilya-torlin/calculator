@@ -22,7 +22,10 @@ class SumCest
 
     public function urlMiddleSum(ApiTester $I)
     {
-        $params = http_build_query(['first' => '12345654789723489823795283405', 'second' => '0.123172386178236182361823']);
+        $params = http_build_query([
+            'first' => '12345654789723489823795283405',
+            'second' => '0.123172386178236182361823'
+        ]);
         $I->sendGET('/sum?' . $params);
         $I->seeResponseCodeIs(HttpCode::OK);
         $I->seeResponseContainsJson(['result' => '12345654789723489823795283405.123172386178236182361823']);
@@ -30,7 +33,11 @@ class SumCest
 
     public function urlThirdSum(ApiTester $I)
     {
-        $params = http_build_query(['first' => '12345654789723489823795283405', 'second' => '0.123172386178236182361823', 'third' => '10']);
+        $params = http_build_query([
+            'first' => '12345654789723489823795283405',
+            'second' => '0.123172386178236182361823',
+            'third' => '10'
+        ]);
         $I->sendGET('/sum?' . $params);
         $I->seeResponseCodeIs(HttpCode::OK);
         $I->seeResponseContainsJson(['result' => '12345654789723489823795283415.123172386178236182361823']);

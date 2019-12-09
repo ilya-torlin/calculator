@@ -63,14 +63,6 @@ class LongDigit
         }
     }
 
-    public function zeroCheck(): bool
-    {
-        if (count($this->digits) == 1 && $this->digits[0] === 0) {
-            return true;
-        }
-        return false;
-    }
-
     public function inverseSign(): LongDigit
     {
         if (count($this->digits) == 1 && $this->digits[0] === 0) {
@@ -78,58 +70,6 @@ class LongDigit
         }
         $this->sign = -$this->sign;
         return $this;
-    }
-
-    public function more(LongDigit $second): bool
-    {
-        if ($this->sign !== $second->sign) {
-            return $this->sign > $second->sign;
-        }
-        if ($this->exponent != $second->exponent) {
-            return ($this->exponent > $second->exponent) ^ ($this->sign == -1);
-        }
-
-        $currentFirst = $this->digits;
-        $currentSecond = $second->digits;
-        $length = max(count($currentFirst), count($currentSecond));
-        while (count($currentFirst) !== $length) {
-            array_push($currentSecond, 0);
-        }
-        while (count($currentSecond) !== $length) {
-            array_push($currentSecond, 0);
-        }
-
-        // проходим по всем цифрам числа
-        for ($count = 0; $count < $length; $count++) {
-            if ($currentFirst[$count] != $currentSecond[$count]) {
-                return ($currentFirst[$count] > $currentSecond[$count]) ^ ($this->sign == -1);
-            }
-        }
-        return false;
-    }
-
-    public function less(LongDigit $second): bool
-    {
-        return !($this->more($second) || $this->equal($second));
-    }
-
-    public function equal(LongDigit $second): bool
-    {
-        if ($this->sign !== $second->sign) {
-            return false;
-        }
-        if ($this->exponent !== $second->exponent) {
-            return false;
-        }
-        if (count($this->digits) !== count($second->digits)) {
-            return false;
-        }
-        for ($count = 0; $count < count($this->digits); $count++) {
-            if ($this->digits[$count] !== $second->digits[$count]) {
-                return false;
-            }
-        }
-	    return true;
     }
 
     public function inverseLongDigit(): LongDigit
@@ -170,5 +110,65 @@ class LongDigit
             $count++;
         } while (!$unit->zeroCheck() && $count < $maxCount);
         return $result;
+    }
+
+    public function zeroCheck(): bool
+    {
+        if (count($this->digits) == 1 && $this->digits[0] === 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public function less(LongDigit $second): bool
+    {
+        return !($this->more($second) || $this->equal($second));
+    }
+
+    public function more(LongDigit $second): bool
+    {
+        if ($this->sign !== $second->sign) {
+            return $this->sign > $second->sign;
+        }
+        if ($this->exponent != $second->exponent) {
+            return ($this->exponent > $second->exponent) ^ ($this->sign == -1);
+        }
+
+        $currentFirst = $this->digits;
+        $currentSecond = $second->digits;
+        $length = max(count($currentFirst), count($currentSecond));
+        while (count($currentFirst) !== $length) {
+            array_push($currentSecond, 0);
+        }
+        while (count($currentSecond) !== $length) {
+            array_push($currentSecond, 0);
+        }
+
+        // проходим по всем цифрам числа
+        for ($count = 0; $count < $length; $count++) {
+            if ($currentFirst[$count] != $currentSecond[$count]) {
+                return ($currentFirst[$count] > $currentSecond[$count]) ^ ($this->sign == -1);
+            }
+        }
+        return false;
+    }
+
+    public function equal(LongDigit $second): bool
+    {
+        if ($this->sign !== $second->sign) {
+            return false;
+        }
+        if ($this->exponent !== $second->exponent) {
+            return false;
+        }
+        if (count($this->digits) !== count($second->digits)) {
+            return false;
+        }
+        for ($count = 0; $count < count($this->digits); $count++) {
+            if ($this->digits[$count] !== $second->digits[$count]) {
+                return false;
+            }
+        }
+        return true;
     }
 }

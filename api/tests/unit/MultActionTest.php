@@ -36,7 +36,8 @@ class MultActionTest extends Unit
         $longDigit1 = new StringLongDigit('12.001');
         $longDigit2 = new StringLongDigit('123.999');
         $result = new MultAction();
-        $this->assertEquals(new LongDigit(1, 4, [1, 4, 8, 8, 1, 1, 1, 9, 9, 9]), $result->execute($longDigit1, $longDigit2));
+        $this->assertEquals(new LongDigit(1, 4, [1, 4, 8, 8, 1, 1, 1, 9, 9, 9]),
+            $result->execute($longDigit1, $longDigit2));
     }
 
     public function testNegativeStringLongDigitMultiplication()
@@ -44,7 +45,8 @@ class MultActionTest extends Unit
         $longDigit1 = new StringLongDigit('-12.001');
         $longDigit2 = new StringLongDigit('123.999');
         $result = new MultAction();
-        $this->assertEquals(new LongDigit(-1, 4, [1, 4, 8, 8, 1, 1, 1, 9, 9, 9]), $result->execute($longDigit1, $longDigit2));
+        $this->assertEquals(new LongDigit(-1, 4, [1, 4, 8, 8, 1, 1, 1, 9, 9, 9]),
+            $result->execute($longDigit1, $longDigit2));
     }
 
     public function testSecondNegativeStringLongDigitMultiplication()
@@ -52,7 +54,8 @@ class MultActionTest extends Unit
         $longDigit1 = new StringLongDigit('-123456789.0001');
         $longDigit2 = new StringLongDigit('-1.999');
         $result = new MultAction();
-        $this->assertEquals(new LongDigit(1, 9, [2, 4, 6, 7, 9, 0, 1, 2, 1, 2, 1, 1, 1, 9 ,9, 9]), $result->execute($longDigit1, $longDigit2));
+        $this->assertEquals(new LongDigit(1, 9, [2, 4, 6, 7, 9, 0, 1, 2, 1, 2, 1, 1, 1, 9, 9, 9]),
+            $result->execute($longDigit1, $longDigit2));
     }
 
     public function testThirdNegativeStringLongDigitMultiplication()

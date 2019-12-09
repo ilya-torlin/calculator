@@ -3,8 +3,6 @@
 namespace app\modules\v1\models\action;
 
 use app\modules\v1\models\digit\LongDigit;
-use app\modules\v1\models\digit\StringLongDigit;
-use phpDocumentor\Reflection\Types\This;
 
 class MultAction implements Action
 {

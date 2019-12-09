@@ -1,5 +1,6 @@
 <?php
 
+use Codeception\Actor;
 
 /**
  * Inherited Methods
@@ -15,12 +16,12 @@
  * @method void pause()
  *
  * @SuppressWarnings(PHPMD)
-*/
-class ApiTester extends \Codeception\Actor
+ */
+class ApiTester extends Actor
 {
     use _generated\ApiTesterActions;
 
-   /**
-    * Define custom actions here
-    */
+    /**
+     * Define custom actions here
+     */
 }

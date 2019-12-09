@@ -68,7 +68,7 @@ class SubController extends BaseApiController
     public function actionIndex()
     {
         list($params, $rawParams) = $this->parseParamsFromQuery();
-        $calculator =  new Calculator($params);
+        $calculator = new Calculator($params);
         $formatter = new DigitFormatter($calculator->sub());
         return $this->prepareParams($rawParams, $formatter->result());
     }

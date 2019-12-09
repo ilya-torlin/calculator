@@ -16,13 +16,13 @@ class InverseActionTest extends Unit
     public function testLightStringLongDigit()
     {
         $longDigit1 = new StringLongDigit('-123.44');
-        $this->assertEquals(new StringLongDigit('123.44'),  $longDigit1->inverseSign());
+        $this->assertEquals(new StringLongDigit('123.44'), $longDigit1->inverseSign());
     }
 
     public function testZeroStringLongDigit()
     {
         $longDigit1 = new StringLongDigit('0');
-        $this->assertEquals(new StringLongDigit('0'),  $longDigit1->inverseSign());
+        $this->assertEquals(new StringLongDigit('0'), $longDigit1->inverseSign());
     }
 
     public function testExtremelyStringLongDigit()
@@ -30,12 +30,4 @@ class InverseActionTest extends Unit
         $longDigit1 = new StringLongDigit('12345567890123456.1234567890');
         $this->assertEquals(new StringLongDigit('-12345567890123456.123456789'), $longDigit1->inverseSign());
     }
-
-    public function testInverseStringLongDigit()
-    {
-        //$longDigit1 = new StringLongDigit('10');
-        //$this->assertEquals(new LongDigit(1, -1, [1, 0]), $longDigit1->inverseLongDigit());
-    }
-
-
 }

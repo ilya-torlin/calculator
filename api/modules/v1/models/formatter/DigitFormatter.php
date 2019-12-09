@@ -7,6 +7,7 @@ use app\modules\v1\models\digit\LongDigit;
 class DigitFormatter
 {
     private $digit;
+
     public function __construct(LongDigit $digit)
     {
         $this->digit = $digit;
@@ -30,7 +31,7 @@ class DigitFormatter
             }
             if ($count < count($this->digit->digits)) {
                 $result .= '.';
-                while($count < count($this->digit->digits)) {
+                while ($count < count($this->digit->digits)) {
                     $result .= $this->digit->digits[$count++];
                 }
             }

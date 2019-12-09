@@ -22,7 +22,10 @@ class SubCest
 
     public function urlMiddleSub(ApiTester $I)
     {
-        $params = http_build_query(['first' => '12345654789723489823795283405', 'second' => '0.123172386178236182361823']);
+        $params = http_build_query([
+            'first' => '12345654789723489823795283405',
+            'second' => '0.123172386178236182361823'
+        ]);
         $I->sendGET('/sub?' . $params);
         $I->seeResponseCodeIs(HttpCode::OK);
         $I->seeResponseContainsJson(['result' => '12345654789723489823795283404.876827613821763817638177']);

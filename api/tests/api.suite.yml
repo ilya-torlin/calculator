@@ -1,6 +1,6 @@
 actor: ApiTester
 modules:
-    enabled:
-        - REST:
-              url: /v1/
-              depends: Yii2
+  enabled:
+    - REST:
+        url: /v1/
+        depends: Yii2

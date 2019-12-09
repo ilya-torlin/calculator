@@ -8,7 +8,7 @@ class DivAction implements Action
 {
     public function execute(LongDigit $first, LongDigit $second): LongDigit
     {
-        $result = (new MultAction())->execute($first,  $second->inverseLongDigit());
+        $result = (new MultAction())->execute($first, $second->inverseLongDigit());
         $count = count($result->digits) - 1 - max(0, $first->exponent);
         $totalExponent = max(0, $result->exponent);
         if ($count > $totalExponent && $result->digits[$count] === 9) {

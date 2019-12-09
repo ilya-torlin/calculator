@@ -22,7 +22,10 @@ class MultCest
 
     public function urlMiddleMult(ApiTester $I)
     {
-        $params = http_build_query(['first' => '12345654789723489823795283405', 'second' => '0.123172386178236182361823']);
+        $params = http_build_query([
+            'first' => '12345654789723489823795283405',
+            'second' => '0.123172386178236182361823'
+        ]);
         $I->sendGET('/mult?' . $params);
         $I->seeResponseCodeIs(HttpCode::OK);
         $I->seeResponseContainsJson(['result' => '1520643759383012900320854147.431300652230240537447315']);

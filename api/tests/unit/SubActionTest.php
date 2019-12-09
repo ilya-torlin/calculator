@@ -44,7 +44,8 @@ class SubActionTest extends Unit
         $longDigit1 = new StringLongDigit('1');
         $longDigit2 = new StringLongDigit('0.0000000000000001');
         $result = new SubAction();
-        $this->assertEquals(new LongDigit(1,0, [9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9]), $result->execute($longDigit1, $longDigit2));
+        $this->assertEquals(new LongDigit(1, 0, [9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9]),
+            $result->execute($longDigit1, $longDigit2));
     }
 
     public function testSubSecondStringLongDigits()
@@ -52,7 +53,7 @@ class SubActionTest extends Unit
         $longDigit1 = new StringLongDigit('1000000000.000000000000000000000000000001');
         $longDigit2 = new StringLongDigit('999999999.000000000000000000000000000001');
         $result = new SubAction();
-        $this->assertEquals(new LongDigit(1,1, [1]), $result->execute($longDigit1, $longDigit2));
+        $this->assertEquals(new LongDigit(1, 1, [1]), $result->execute($longDigit1, $longDigit2));
     }
 
     public function testSubSecondNegativeStringLongDigits()
@@ -60,6 +61,6 @@ class SubActionTest extends Unit
         $longDigit1 = new StringLongDigit('999999999.000000000000000000000000000001');
         $longDigit2 = new StringLongDigit('1000000000.000000000000000000000000000001');
         $result = new SubAction();
-        $this->assertEquals(new LongDigit(-1,1, [1]), $result->execute($longDigit1, $longDigit2));
+        $this->assertEquals(new LongDigit(-1, 1, [1]), $result->execute($longDigit1, $longDigit2));
     }
 }

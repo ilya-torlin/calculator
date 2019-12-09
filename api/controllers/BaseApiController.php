@@ -4,21 +4,14 @@ namespace app\controllers;
 
 use app\modules\v1\models\digit\StringLongDigit;
 use Yii;
-use yii\filters\auth\CompositeAuth;
-use yii\filters\auth\HttpBearerAuth;
-use yii\filters\auth\QueryParamAuth;
 use yii\filters\ContentNegotiator;
 use yii\filters\Cors;
 use yii\web\Controller;
-use yii\rest\OptionsAction;
 use yii\web\Response;
 use yii\web\UnprocessableEntityHttpException;
 
 class BaseApiController extends Controller
 {
-    protected $collectionOptions = ['GET', 'POST', 'OPTIONS'];
-    protected $resourceOptions = ['GET', 'POST', 'OPTIONS'];
-
     const DIGIT_PATTERN = '/^-?[0-9]*[.]?[0-9]+$/';
 
     public function behaviors()

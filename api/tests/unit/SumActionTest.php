@@ -44,6 +44,7 @@ class SumActionTest extends Unit
         $longDigit1 = new StringLongDigit('0.9876543210');
         $longDigit2 = new StringLongDigit('0.123456789');
         $result = new SumAction();
-        $this->assertEquals(new LongDigit(1,1,[1, 1, 1, 1, 1, 1, 1, 1, 1]), $result->execute($longDigit1, $longDigit2));
+        $this->assertEquals(new LongDigit(1, 1, [1, 1, 1, 1, 1, 1, 1, 1, 1]),
+            $result->execute($longDigit1, $longDigit2));
     }
 }
