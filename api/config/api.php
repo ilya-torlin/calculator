@@ -31,6 +31,20 @@ $config = [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'class' => 'yii\web\UrlManager',
+            'enableStrictParsing' => false,
+            'rules' => [
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'pluralize' => false,
+                    'controller' => [
+                        'v1/sum',
+                        'v1/mult',
+                        'v1/sub',
+                        'v1/div',
+                    ],
+                ],
+            ],
         ],
     ],
     'modules' => [

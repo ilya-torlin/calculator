@@ -24,10 +24,16 @@ class SubController extends BaseApiController
 
     public function actionIndex()
     {
-        $request = Yii::$app->request;
-        $params = [];
+        $params = $this->parseParamsFromQuery();
         $calculator =  new Calculator($params);
         $formatter = new DigitFormatter($calculator->sub());
         return $this->prepareParams($params, $formatter->result());
+    }
+
+    public function actions()
+    {
+        $actions = parent::actions();
+        unset($actions['index']);
+        return $actions;
     }
 }

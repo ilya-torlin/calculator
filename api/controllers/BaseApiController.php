@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\modules\v1\models\digit\StringLongDigit;
 use Yii;
 use yii\filters\auth\CompositeAuth;
 use yii\filters\auth\HttpBearerAuth;
@@ -11,11 +12,14 @@ use yii\filters\Cors;
 use yii\rest\Controller;
 use yii\rest\OptionsAction;
 use yii\web\Response;
+use yii\web\UnprocessableEntityHttpException;
 
 class BaseApiController extends Controller
 {
     protected $collectionOptions = ['GET', 'POST', 'OPTIONS'];
     protected $resourceOptions = ['GET', 'POST', 'OPTIONS'];
+
+    const DIGIT_PATTERN = '/^[0-9]*[.]?[0-9]+$/';
 
     public function behaviors()
     {
@@ -86,5 +90,22 @@ class BaseApiController extends Controller
                 'result' => $result,
             ]
         ];
+    }
+
+    public function parseParamsFromQuery(): array
+    {
+        $requestParams = Yii::$app->request->getQueryParams();
+        $params = [];
+        foreach ($requestParams as $key => $param) {
+            preg_match(self::DIGIT_PATTERN, $param, $matches);
+            if (empty($matches)) {
+                throw new UnprocessableEntityHttpException("${key} - parameter has invalid characters ");
+            }
+            array_push($params, new StringLongDigit($param));
+        }
+        if (empty($param)) {
+            throw new UnprocessableEntityHttpException('Empty params');
+        }
+        return $params;
     }
 }
