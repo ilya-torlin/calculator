@@ -99,7 +99,7 @@ class BaseApiController extends Controller
         foreach ($requestParams as $key => $param) {
             preg_match(self::DIGIT_PATTERN, $param, $matches);
             if (empty($matches)) {
-                throw new UnprocessableEntityHttpException("${key} - parameter has invalid characters ");
+                throw new UnprocessableEntityHttpException("${key} - parameter has invalid characters, only [0-9.]");
             }
             array_push($params, new StringLongDigit($param));
         }
