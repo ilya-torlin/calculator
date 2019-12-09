@@ -23,28 +23,24 @@ class InverseActionTest extends Unit
     public function testLightLongDigitMultiplication()
     {
         $longDigit1 = new LongDigit(1, 2, [1, 2]);
-        $result = new InverseAction();
-        $this->assertEquals(new LongDigit(-1, 2, [1, 2]), $result->execute($longDigit1));
+        $this->assertEquals(new LongDigit(-1, 2, [1, 2]), $longDigit1->inverse());
     }
 
     public function testLightStringLongDigitMultiplication()
     {
         $longDigit1 = new StringLongDigit('-123.44');
-        $result = new InverseAction();
-        $this->assertEquals(new StringLongDigit('123.44'), $result->execute($longDigit1));
+        $this->assertEquals(new StringLongDigit('123.44'),  $longDigit1->inverse());
     }
 
     public function testZeroStringLongDigitMultiplication()
     {
         $longDigit1 = new StringLongDigit('0');
-        $result = new InverseAction();
-        $this->assertEquals(new StringLongDigit('0'), $result->execute($longDigit1));
+        $this->assertEquals(new StringLongDigit('0'),  $longDigit1->inverse());
     }
 
     public function testExtremelyStringLongDigitMultiplication()
     {
         $longDigit1 = new StringLongDigit('12345567890123456.1234567890');
-        $result = new InverseAction();
-        $this->assertEquals(new StringLongDigit('-12345567890123456.1234567890'), $result->execute($longDigit1));
+        $this->assertEquals(new StringLongDigit('-12345567890123456.123456789'), $longDigit1->inverse());
     }
 }

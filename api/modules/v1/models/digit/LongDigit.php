@@ -60,10 +60,47 @@ class LongDigit
         }
     }
 
-    public function zeroCheck()
+    public function zeroCheck(): bool
     {
         if (count($this->digits) == 1 && $this->digits[0] === 0) {
             return true;
+        }
+        return false;
+    }
+
+    public function inverse(): LongDigit
+    {
+        if (count($this->digits) == 1 && $this->digits[0] === 0) {
+            return $this;
+        }
+        $this->sign = -$this->sign;
+        return $this;
+    }
+
+    public function more(LongDigit $second): bool
+    {
+        if ($this->sign !== $second->sign) {
+            return $this->sign > $second->sign;
+        }
+        if ($this->exponent != $second->exponent) {
+            return ($this->exponent > $second->exponent) ^ ($this->sign == -1);
+        }
+
+        $currentFirst = $this->digits;
+        $currentSecond = $second->digits;
+        $length = max(count($currentFirst), count($currentSecond));
+        while (count($currentFirst) !== $length) {
+            array_push($currentSecond, 0);
+        }
+        while (count($currentSecond) !== $length) {
+            array_push($currentSecond, 0);
+        }
+
+        // проходим по всем цифрам числа
+        for ($count = 0; $count < $length; $count++) {
+            if ($currentFirst[$count] != $currentSecond[$count]) {
+                return ($currentFirst[$count] > $currentSecond[$count]) ^ ($this->sign == -1);
+            }
         }
         return false;
     }
