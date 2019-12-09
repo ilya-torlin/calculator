@@ -28,6 +28,7 @@ class CalculatorTest extends Unit
         $this->assertEquals(new LongDigit(1, 0, [1, 2, 3, 4, 5, 6, 7, 8, 9]), $calculator->sub());
         $this->assertEquals(new LongDigit(1, 1, [9, 3, 7, 0, 3, 7, 0, 3, 6, 7]), $calculator->mult());
     }
+
     public function testZeroCalculatorActions()
     {
         $first = new StringLongDigit('12345678987654321.98765432123456789');
