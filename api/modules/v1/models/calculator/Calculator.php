@@ -23,12 +23,24 @@ class Calculator
 
     public function add(): LongDigit
     {
-        return (new SumAction())->execute($this->terms[0], $this->terms[1]);
+        if ($this->terms[0]->sign === $this->terms[1]->sign) {
+            return (new SumAction())->execute($this->terms[0], $this->terms[1]);
+        }
+        if ($this->terms[0]->sign === -1) {
+            return (new SubAction())->execute($this->terms[1], $this->terms[0]->inverseSign());
+        }
+        return (new SubAction())->execute($this->terms[0], $this->terms[1]->inverseSign());
     }
 
     public function sub(): LongDigit
     {
-        return (new SubAction())->execute($this->terms[0], $this->terms[1]);
+        if ($this->terms[0]->sign === 1 && $this->terms[1]->sign === 1) {
+            return (new SubAction())->execute($this->terms[0], $this->terms[1]);
+        }
+        if ($this->terms[0]->sign === -1 && $this->terms[1]->sign == -1) {
+            return (new SubAction())->execute($this->terms[1]->inverseSign(), $this->terms[0]->inverseSign());
+        }
+        return (new SumAction())->execute($this->terms[0], $this->terms[1]->inverseSign());
     }
 
     public function mult(): LongDigit
