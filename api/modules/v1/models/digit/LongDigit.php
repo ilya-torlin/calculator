@@ -68,7 +68,7 @@ class LongDigit
         return false;
     }
 
-    public function inverse(): LongDigit
+    public function inverseSign(): LongDigit
     {
         if (count($this->digits) == 1 && $this->digits[0] === 0) {
             return $this;
