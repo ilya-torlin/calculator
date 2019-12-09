@@ -43,8 +43,8 @@ class InverseActionTest extends Unit
 
     public function testExtremelyStringLongDigitMultiplication()
     {
-        $longDigit1 = new StringLongDigit('12345567890.1234567890');
+        $longDigit1 = new StringLongDigit('12345567890123456.1234567890');
         $result = new InverseAction();
-        $this->assertEquals(new StringLongDigit('-12345567890.1234567890'), $result->execute($longDigit1));
+        $this->assertEquals(new StringLongDigit('-12345567890123456.1234567890'), $result->execute($longDigit1));
     }
 }
