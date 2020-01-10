@@ -9,19 +9,6 @@ use yii\filters\VerbFilter;
 
 class MultController extends BaseApiController
 {
-    public function behaviors()
-    {
-        $behaviors = parent::behaviors();
-        return array_merge($behaviors, [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'index' => ['get'],
-                ],
-            ],
-        ]);
-    }
-
     /**
      * @OA\Get(
      *     path="/mult",

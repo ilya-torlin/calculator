@@ -9,26 +9,6 @@ use yii\filters\VerbFilter;
 
 class SubController extends BaseApiController
 {
-    public function behaviors()
-    {
-        $behaviors = parent::behaviors();
-        return array_merge($behaviors, [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'index' => ['get'],
-                ],
-            ],
-        ]);
-    }
-
-    public function actions()
-    {
-        $actions = parent::actions();
-        unset($actions['index']);
-        return $actions;
-    }
-
     /**
      * @OA\Get(
      *     path="/sub",
