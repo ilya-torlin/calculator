@@ -43,6 +43,7 @@ $config = [
                         'v1/sub',
                         //'v1/div',
                     ],
+                    'except' => ['create', 'view', 'update', 'delete'],
                 ],
             ],
         ],

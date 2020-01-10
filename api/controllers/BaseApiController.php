@@ -6,7 +6,7 @@ use app\modules\v1\models\digit\StringLongDigit;
 use Yii;
 use yii\filters\ContentNegotiator;
 use yii\filters\Cors;
-use yii\web\Controller;
+use yii\rest\Controller;
 use yii\web\Response;
 use yii\web\UnprocessableEntityHttpException;
 

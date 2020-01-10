@@ -22,13 +22,6 @@ class MultController extends BaseApiController
         ]);
     }
 
-    public function actions()
-    {
-        $actions = parent::actions();
-        unset($actions['index']);
-        return $actions;
-    }
-
     /**
      * @OA\Get(
      *     path="/mult",
